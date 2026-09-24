@@ -1,0 +1,19 @@
+server:
+  port: ${PORT:8086}
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/industrend}
+    username: ${DATABASE_USER:industrend}
+    password: ${DATABASE_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${DB_POOL_MAX:8}
+      connection-init-sql: SET search_path TO industrendindia,pg_catalog
+  flyway:
+    default-schema: industrendindia
+    schemas: industrendindia
+    create-schemas: true
+    table: flyway_payment_history
+management:
+  endpoints.web.exposure.include: health,info
